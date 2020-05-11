@@ -1,0 +1,49 @@
+import React from 'react';
+import './Contador.css';
+
+class Contador extends React.Component{
+  // state = {
+  //   passo: this.props.passo || 1,
+  //   valor: this.props.valorInicial || 0
+  // }
+  constructor(props){
+    super(props);
+    this.state = {
+      passo: props.passo || 1,
+      valor: props.valorInicial || 0
+    }
+  }
+
+  inc = ()=>{
+    this.setState({
+      valor: this.state.valor + this.state.passo
+    });
+  }
+
+  dec = ()=>{
+    this.setState({
+      valor: this.state.valor - this.state.passo
+    });
+  }
+
+  render(){
+    return (
+      <div className="Contador">
+          <h2>Contador</h2>
+          <label htmlFor="inputPasso">Passo: </label>
+          <input id="inputPasso" type="number" 
+              value={this.state.passo}
+              onChange={e => this.setState({passo: +e.target.value})} 
+          />
+          <h4>Valor: {this.state.valor}</h4>
+
+          <div>
+            <button onClick={this.inc}>+</button>
+            <button onClick={this.dec}>-</button>
+          </div>
+      </div>
+    );
+  }
+}
+
+export default Contador;
